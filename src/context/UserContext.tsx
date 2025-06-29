@@ -23,9 +23,13 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       try {
         const res = await fetch("/.auth/me");
         const data = await res.json();
-
-        if (Array.isArray(data) && data.length > 0 && data[0].clientPrincipal) {
-          setUser(data[0].clientPrincipal as ClientPrincipal);
+        if(data){
+            if (Array.isArray(data) && data.length > 0 && data[0].clientPrincipal) {
+                setUser(data[0].clientPrincipal as ClientPrincipal);
+            }
+            else if(data.clientPrincipal) {
+                setUser(data.clientPrincipal as ClientPrincipal);
+            }
         }
       } catch (error) {
         console.error("Failed to fetch user info:", error);
