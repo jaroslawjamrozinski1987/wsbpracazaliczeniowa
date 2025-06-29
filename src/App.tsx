@@ -9,8 +9,13 @@ function App() {
       .then(res => res.json())
       .then(data => {
         console.log("User data:", data);
-        if (data.length > 0) {
-          setUser(data[0].clientPrincipal);
+        if (data) {
+          if(Array.isArray(data) && data.length > 0) {
+            setUser(data[0].clientPrincipal);
+          }
+          else{
+            setUser(data.clientPrincipal);
+          }
         }
       });
   }, []);
