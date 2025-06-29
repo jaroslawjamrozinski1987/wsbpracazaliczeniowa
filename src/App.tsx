@@ -8,6 +8,7 @@ function App() {
     fetch("/.auth/me")
       .then(res => res.json())
       .then(data => {
+        console.log("User data:", data);
         if (data.length > 0) {
           setUser(data[0].clientPrincipal);
         }
