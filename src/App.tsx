@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import type { Document } from "./types/Document";
 import * as signalR from "@microsoft/signalr";
@@ -64,13 +64,13 @@ const connectToSignalR = async () => {
       connectToSignalR();
   }, []);
 
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       setFile(e.target.files[0]);
     }
   };
 
-  const handleUpload = async (e: FormEvent) => {
+  const handleUpload = async (e: any) => {
     e.preventDefault();
     if (!file) {
       alert("Select a file first.");
