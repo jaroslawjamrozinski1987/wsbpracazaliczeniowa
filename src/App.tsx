@@ -3,6 +3,7 @@ import "./App.css";
 import type { Document } from "./types/Document";
 import * as signalR from "@microsoft/signalr";
 import { toast } from "react-toastify";
+import DocumentGrid from "./components/DocumentGrid";
 
 function App() {
   const [file, setFile] = useState<File | null>(null);
@@ -114,13 +115,7 @@ const connectToSignalR = async () => {
       {requests.length === 0 ? (
         <p>Brak danych.</p>
       ) : (
-        <ul>
-          {requests.map(f => (
-            <li key={f.id}>
-              {f.id} (utworzono: {new Date(f.createdAt).toLocaleString()} przez {f.person})
-            </li>
-          ))}
-        </ul>
+        <DocumentGrid documents={requests} />        
       )}
     </div>
   );
